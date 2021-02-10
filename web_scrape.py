@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 from time import sleep
 # from multiprocessing import pool
+import pandas as pd
 
 def get_soup(link_principal, link_secundario, iterador):
     #función para conseguir el html de la pagina web
@@ -79,6 +80,11 @@ link_Fv = ("https://www.lacomer.com.mx/lacomer/doHome.action?key=Frutas-y-Verdur
 
 frutas_Fresko = repeat(sacar_datos_Fresko, link_Ff[0], link_Ff[1])
 verduras_Fresko = repeat(sacar_datos_Fresko, link_Fv[0], link_Fv[1])
+
+
+Fresko = pd.DataFrame(frutas_Fresko + verduras_Fresko).sort_values(by=0,axis=0)
+
+
 
 
 # #%%## Para Soriana: 
